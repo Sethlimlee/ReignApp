@@ -5,7 +5,7 @@ class Builds extends Component {
     super();
   }
   render() {
-    return <div>Builds</div>;
+    return <div className="builds">Builds</div>;
   }
 }
 

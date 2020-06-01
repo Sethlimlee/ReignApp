@@ -1,3 +1,92 @@
 .App {
+  background-color: #232f3e;
+  height: 100vh;
+  width: 100vw;
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.calculator {
+  color: white;
+  height: 640px;
+  width: 600px;
+  background-color: #161e2d;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 25px;
+}
+
+.calculatorInputs {
+  color: white;
+  height: 240px;
+  width: 600px;
+  background-color: #161e2d;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: stretch;
+}
+.calculatorRow {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  font: 700 30px/24px AEmb, Helvetica, Arial, sans-serif;
+}
+
+.calculatorRowProfit {
+  height: 200px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  font: 700 30px/24px AEmb, Helvetica, Arial, sans-serif;
+}
+
+.profit {
+  width: 35%;
+  height: 100px;
+  background-color: #0099d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: 700 50px/24px AEmb, Helvetica, Arial, sans-serif;
+  border-radius: 8px;
+}
+
+h3 {
+  width: 100%;
+  font: 700 40px/24px AEmb, Helvetica, Arial, sans-serif;
+}
+input {
+  width: 40%;
+  background-color: #202a36;
+  content: "$";
+  color: white;
+  font: 700 20px/24px AEmb, Helvetica, Arial, sans-serif;
+  -webkit-appearance: none;
+  border: none;
+  outline: none;
+  height: 45px;
+  border-radius: 8px;
+  margin-left: 5px;
+  padding-left: 10px;
+}
+
+span {
+  width: 35%;
 }
