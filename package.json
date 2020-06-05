@@ -18,6 +18,9 @@
     "express-session": "^1.15.6",
     "massive": "^4.7.1"
   },
+  "engines": {
+    "node": "10.15.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
