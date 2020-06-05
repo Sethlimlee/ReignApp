@@ -35,6 +35,16 @@
   font: 700 40px/24px AEmb, Helvetica, Arial, sans-serif;
 }
 
+.build:hover {
+  box-shadow: none;
+  background-color: lightblue;
+}
+
+.build:focus {
+  box-shadow: none;
+  background-color: lightblue;
+}
+
 .buildPrices {
   height: 65%;
   display: flex;

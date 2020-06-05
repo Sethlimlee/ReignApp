@@ -12,6 +12,7 @@ class Build extends Component {
           )
         }
         className="build"
+        tabIndex="1"
       >
         <div className="buildName">
           <section>{this.props.name}</section>
