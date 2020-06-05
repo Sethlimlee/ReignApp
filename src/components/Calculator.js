@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 
 class Calculator extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
     return (
       <div className="calculator">
@@ -18,6 +14,7 @@ class Calculator extends Component {
                 onChange={(e) =>
                   this.props.handleInput("buildPrice", e.target.value)
                 }
+                value={this.props.buildPrice}
               ></input>
             </span>
           </div>
@@ -29,6 +26,7 @@ class Calculator extends Component {
                 onChange={(e) =>
                   this.props.handleInput("sellPrice", e.target.value)
                 }
+                value={this.props.sellPrice}
               ></input>
             </span>
           </div>
@@ -41,6 +39,7 @@ class Calculator extends Component {
                 onChange={(e) =>
                   this.props.handleInput("shippingPrice", e.target.value)
                 }
+                value={this.props.shippingPrice}
               ></input>
             </span>
           </div>
