@@ -76,7 +76,7 @@ class App extends Component {
   }
 
   render() {
-    const allBuilds = this.state.builds.map((build) => {
+    const allBuilds = this.state.builds.map(([build]) => {
       return (
         <Build
           key={build.id}
