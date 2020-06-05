@@ -7,4 +7,14 @@ module.exports = {
       res.status(200).send(response);
     });
   },
+  updatebuild: (req, res) => {
+    const db = req.app.get("db");
+    const { id, buildPrice, shippingPrice, sellPrice } = req.params;
+
+    db.update_build([id, buildPrice, shippingPrice, sellPrice]).then(
+      (response) => {
+        res.status(200).send(response);
+      }
+    );
+  },
 };

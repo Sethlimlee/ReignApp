@@ -17,6 +17,10 @@ massive(CONNECTION_STRING).then((db) => {
 });
 
 app.get("/api/builds", c.getAllBuilds);
+app.put(
+  "/api/updatebuild/:id/:buildPrice/:shippingPrice/:sellPrice",
+  c.updatebuild
+);
 
 app.listen(SERVER_PORT, () =>
   console.log(chalk.cyan(`POWER LEVEL OVER ${SERVER_PORT}!!!!!!!`))

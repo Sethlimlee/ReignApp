@@ -4,6 +4,7 @@ import Calculator from "./components/Calculator";
 import axios from "axios";
 
 import "./App.css";
+import "./reset.css";
 
 class App extends Component {
   constructor() {
@@ -16,11 +17,13 @@ class App extends Component {
       profit: "",
       margin: "",
       builds: [],
+      buildId: 0,
     };
     this.handleInput = this.handleInput.bind(this);
     this.calculate = this.calculate.bind(this);
+    this.updateBuild = this.updateBuild.bind(this);
   }
-  //test//
+
   componentDidMount() {
     axios.get("/api/builds").then((response) => {
       console.log(response.data);
@@ -43,7 +46,7 @@ class App extends Component {
     }
   }
 
-  calculate(sellPrice, buildPrice, shippingPrice) {
+  calculate(sellPrice, buildPrice, shippingPrice, id = this.state.buildId) {
     var amazonFee =
       ((parseFloat(sellPrice) + parseFloat(shippingPrice)) * 6) / 100 + 0.99;
     var margin = ((sellPrice - buildPrice - amazonFee) / sellPrice) * 100;
@@ -54,7 +57,22 @@ class App extends Component {
       sellPrice: sellPrice,
       buildPrice: buildPrice,
       shippingPrice: shippingPrice,
+      buildId: id,
     });
+  }
+
+  updateBuild(id, buildPrice, shippingPrice, sellPrice) {
+    console.log(id);
+    axios
+      .put(`/api/updatebuild/${id}/${buildPrice}/${shippingPrice}/${sellPrice}`)
+      .then((res) => {
+        axios.get("/api/builds").then((response) => {
+          console.log(response.data);
+          this.setState({
+            builds: response.data,
+          });
+        });
+      });
   }
 
   render() {
@@ -62,6 +80,7 @@ class App extends Component {
       return (
         <Build
           key={build.id}
+          id={build.id}
           name={build.name}
           buildPrice={build.buildprice}
           shippingPrice={build.shippingprice}
@@ -76,12 +95,14 @@ class App extends Component {
         <Calculator
           handleInput={this.handleInput}
           calculate={this.calculate}
+          updateBuild={this.updateBuild}
           buildPrice={this.state.buildPrice}
           shippingPrice={this.state.shippingPrice}
           sellPrice={this.state.sellPrice}
           profit={this.state.profit}
           amazonFee={this.state.amazonFee}
           margin={this.state.margin}
+          buildId={this.state.buildId}
         />
       </div>
     );

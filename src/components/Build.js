@@ -8,7 +8,8 @@ class Build extends Component {
           this.props.calculate(
             this.props.sellPrice,
             this.props.buildPrice,
-            this.props.shippingPrice
+            this.props.shippingPrice,
+            this.props.id
           )
         }
         className="build"
