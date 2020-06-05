@@ -20,7 +20,7 @@ class App extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.calculate = this.calculate.bind(this);
   }
-  //test//
+
   componentDidMount() {
     axios.get("/api/builds").then((response) => {
       console.log(response.data);
