@@ -13,7 +13,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "reignapp/build")));
 // Anything that doesn't match the above, send back index.html
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/reignapp/build/index.html"));
+  res.sendFile(path.join("/app/reignapp/build/index.html"));
 });
 
 app.use(bodyParser.json());
