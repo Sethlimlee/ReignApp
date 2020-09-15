@@ -69,6 +69,7 @@ class App extends Component {
     transactionFee,
     id = this.state.buildId
   ) {
+    console.log("here");
     var amazonFee =
       (parseFloat(sellPrice) * parseFloat(transactionFee)) / 100 + 0.99;
     var margin = ((sellPrice - buildPrice - amazonFee) / sellPrice) * 100;
