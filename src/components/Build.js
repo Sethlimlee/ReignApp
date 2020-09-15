@@ -9,6 +9,7 @@ class Build extends Component {
             this.props.sellPrice,
             this.props.buildPrice,
             this.props.shippingPrice,
+            this.props.transactionFee,
             this.props.id
           )
         }
@@ -20,7 +21,7 @@ class Build extends Component {
         </div>
         <div className="buildPrices">
           <section>Build Price: ${this.props.buildPrice}</section>
-          <section>Shipping Price: ${this.props.shippingPrice}</section>
+          <section>Transaction Fee: {this.props.transactionFee}%</section>
           <section>Selling Price: ${this.props.sellPrice}</section>
         </div>
       </div>

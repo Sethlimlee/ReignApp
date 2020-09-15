@@ -12,7 +12,8 @@ class App extends Component {
     this.state = {
       buildPrice: "",
       sellPrice: "",
-      shippingPrice: "",
+      shippingPrice: 50,
+      transactionFee: "",
       amazonFee: "",
       profit: "",
       margin: "",
@@ -38,36 +39,58 @@ class App extends Component {
       [key]: value,
     });
     if (key === "buildPrice") {
-      this.calculate(this.state.sellPrice, value, this.state.shippingPrice);
+      this.calculate(
+        this.state.sellPrice,
+        value,
+        this.state.shippingPrice,
+        this.state.transactionFee
+      );
     } else if (key === "sellPrice") {
-      this.calculate(value, this.state.buildPrice, this.state.shippingPrice);
+      this.calculate(
+        value,
+        this.state.buildPrice,
+        this.state.shippingPrice,
+        this.state.transactionFee
+      );
     } else {
-      this.calculate(this.state.sellPrice, this.state.buildPrice, value);
+      this.calculate(
+        this.state.sellPrice,
+        this.state.buildPrice,
+        this.state.shippingPrice,
+        value
+      );
     }
   }
 
-  calculate(sellPrice, buildPrice, shippingPrice, id = this.state.buildId) {
+  calculate(
+    sellPrice,
+    buildPrice,
+    shippingPrice,
+    transactionFee,
+    id = this.state.buildId
+  ) {
     var amazonFee =
-      ((parseFloat(sellPrice) + parseFloat(shippingPrice)) * 6) / 100 + 0.99;
+      (parseFloat(sellPrice) * parseFloat(transactionFee)) / 100 + 0.99;
     var margin = ((sellPrice - buildPrice - amazonFee) / sellPrice) * 100;
+
     this.setState({
-      profit: (sellPrice - buildPrice - amazonFee).toFixed(2),
+      profit: (sellPrice - buildPrice - amazonFee - shippingPrice).toFixed(2),
       amazonFee: amazonFee.toFixed(2),
       margin: margin.toFixed(2),
       sellPrice: sellPrice,
       buildPrice: buildPrice,
-      shippingPrice: shippingPrice,
+      transactionFee: transactionFee,
       buildId: id,
     });
   }
 
-  updateBuild(id, buildPrice, shippingPrice, sellPrice) {
-    console.log(id);
+  updateBuild(id, buildPrice, transactionFee, sellPrice) {
     axios
-      .put(`/api/updatebuild/${id}/${buildPrice}/${shippingPrice}/${sellPrice}`)
+      .put(
+        `/api/updatebuild/${id}/${buildPrice}/${transactionFee}/${sellPrice}`
+      )
       .then((res) => {
         axios.get("/api/builds").then((response) => {
-          console.log(response.data);
           this.setState({
             builds: response.data,
           });
@@ -83,7 +106,8 @@ class App extends Component {
           id={build.id}
           name={build.name}
           buildPrice={build.buildprice}
-          shippingPrice={build.shippingprice}
+          shippingPrice={this.state.shippingPrice}
+          transactionFee={build.transactionfee}
           sellPrice={build.sellprice}
           calculate={this.calculate}
         ></Build>
@@ -103,6 +127,7 @@ class App extends Component {
           amazonFee={this.state.amazonFee}
           margin={this.state.margin}
           buildId={this.state.buildId}
+          transactionFee={this.state.transactionFee}
         />
       </div>
     );

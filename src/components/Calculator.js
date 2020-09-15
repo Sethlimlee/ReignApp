@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 class Calculator extends Component {
   render() {
-    console.log(this.props.buildId);
     return (
       <div className="calculator">
         <h3>Profitability Calculator</h3>
@@ -21,19 +20,6 @@ class Calculator extends Component {
             </span>
           </div>
           <div className="calculatorRow">
-            Shipping Price:
-            <span>
-              $
-              <input
-                className="calcInput"
-                onChange={(e) =>
-                  this.props.handleInput("shippingPrice", e.target.value)
-                }
-                value={this.props.shippingPrice}
-              ></input>
-            </span>
-          </div>
-          <div className="calculatorRow">
             Sell Price:
             <span>
               $
@@ -46,6 +32,19 @@ class Calculator extends Component {
               ></input>
             </span>
           </div>
+          <div className="calculatorRow">
+            Transaction Fee:
+            <span>
+              <input
+                className="calcInput"
+                onChange={(e) =>
+                  this.props.handleInput("transactionFee", e.target.value)
+                }
+                value={this.props.transactionFee}
+              ></input>
+              %
+            </span>
+          </div>
         </div>
         <div className="calculatorRowProfit">
           Profit:
@@ -53,7 +52,8 @@ class Calculator extends Component {
         </div>
         <div className="calcBottom">
           <div className="amazonMargin">
-            <p>Amazon Fee: ${this.props.amazonFee}</p>
+            <p>Transaction Fee: ${this.props.amazonFee}</p>
+            <p>Shipping Cost: ${this.props.shippingPrice}</p>
             <p>Margin: {this.props.margin}%</p>
           </div>
           <div>
@@ -63,7 +63,7 @@ class Calculator extends Component {
                 this.props.updateBuild(
                   this.props.buildId,
                   this.props.buildPrice,
-                  this.props.shippingPrice,
+                  this.props.transactionFee,
                   this.props.sellPrice
                 )
               }

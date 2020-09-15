@@ -21,7 +21,7 @@ massive(CONNECTION_STRING).then((db) => {
 
 app.get("/api/builds", c.getAllBuilds);
 app.put(
-  "/api/updatebuild/:id/:buildPrice/:shippingPrice/:sellPrice",
+  "/api/updatebuild/:id/:buildPrice/:transactionFee/:sellPrice",
   c.updatebuild
 );
 
