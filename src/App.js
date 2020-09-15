@@ -72,7 +72,8 @@ class App extends Component {
     console.log("here");
     var amazonFee =
       (parseFloat(sellPrice) * parseFloat(transactionFee)) / 100 + 0.99;
-    var margin = ((sellPrice - buildPrice - amazonFee) / sellPrice) * 100;
+    var margin =
+      ((sellPrice - buildPrice - amazonFee - shippingPrice) / sellPrice) * 100;
 
     this.setState({
       profit: (sellPrice - buildPrice - amazonFee - shippingPrice).toFixed(2),
